@@ -1,12 +1,13 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.6.3-jdk-11-slim'
-    }
-
-  }
+  agent none
   stages {
     stage('build') {
+      agent {
+        dockerfile {
+          filename 'maven:3.6.3-jdk-11-slim'
+        }
+
+      }
       steps {
         echo 'compile maven app'
         sh 'mvn compile'
